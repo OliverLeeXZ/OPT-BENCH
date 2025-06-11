@@ -1,0 +1,48 @@
+[
+    {
+      "type": "draft",
+      "prompt": {
+        "Introduction": "You are a Kaggle grandmaster attending a competition {task_type}. In order to win this competition, you need to come up with an exceptional and creative plan. To address this problem, I will provide you with the specific task description, the evaluation metrics to be used, training set and submission format in sequence.",
+        "Task description": "{description}",
+        "Evaluation metric": "{metric}",
+        "Training set format": "{dataset_description}",
+        "Submission format": "{submission_format}",
+        "Instructions": {}
+      }
+    },
+    {
+      "type": "improve",
+      "prompt": {
+        "Introduction": "You are a Kaggle grandmaster attending a competition {task_type}. You have been provided with previously developed solution, and your task is to improve it in order to increase the performance in test dataset. Review previous solution and improve based on it. You can only modify the model, optimizer, or hyperparameters, and adjust feature engineering for compatibility.",
+        "Task description": "{description}",
+        "Training set format": "{dataset_description}",
+        "History information": "{history_information}",
+        "Instructions": {},
+        "Previous solution": {
+            "Code": "{code_template}"
+        }
+      }
+    },
+    {
+      "type": "debug",
+      "prompt": {
+        "Introduction": "You are a Kaggle grandmaster attending a competition {task_type}. The previous solution contains a bug. According to the buggy information, revise it to fix the issue.",
+        "Task description": "{description}",
+        "Previous (buggy) implementation": "{buggy_code}",
+        "Execution output": "{execution_output}",
+        "Instructions": {}
+      }
+    },
+    {
+      "type": "improve_wom",
+      "prompt": {
+        "Introduction": "You are a Kaggle grandmaster attending a competition {task_type}. You have been provided with previously developed solution, and your task is to improve it in order to increase the performance in test dataset. Review previous solution and improve based on it. You can only modify the model, optimizer, or hyperparameters, and adjust feature engineering for compatibility.",
+        "Task description": "{description}",
+        "Training set format": "{dataset_description}",
+        "Instructions": {},
+        "Previous solution": {
+          "Code": "{code_template}"
+        }
+      }
+    }
+  ]

@@ -1,0 +1,52 @@
+[
+  {
+    "type": "draft",
+    "prompt": {
+      "Introduction": "You are a great expert solving {task_type} question. You should propose a solution to this question.",
+      "Task description": "{description}",
+      "Submission Format": "{submission_format}",
+      "Question": "The {task_type} question is: {question}",
+      "Example Input and Output": "Here is the example input and output: Input: {example_input} Output: {example_output}",
+      "Instructions": "You should only output the answer of this task following Submission Format. Do not output code or any explanation. The output must not include anything other than the final answer. Ensure your response stays within the maximum token limit. Avoid repeating or padding the output.",
+      "Response format": "The last part of your response should be of the following format: \"Answer: <YOUR ANSWER>\" (without angle brackets) where YOUR ANSWER is your answer. For your answer, do not output additional contents that violate the specified format."
+    }
+    },
+    {
+      "type": "improve",
+      "prompt": {
+        "Introduction": "You are a great expert solving {task_type} question. You should optimize the solution based on the history information.",
+        "Task description": "{description}",
+        "Submission Format": "{submission_format}",
+        "Question": "The {task_type} question is: {question}",
+        "Example Input and Output": "Here is the example input and output: Input: {example_input} Output: {example_output}",
+        "History information": "{history_information}",
+        "Instructions": "You should only output the answer of this task following Submission Format. Do not output code or any explanation. The output must not include anything other than the final answer. Ensure your response stays within the maximum token limit. Avoid repeating or padding the output.",
+        "Response format": "The last part of your response should be of the following format: \"Answer: <YOUR ANSWER>\" (without angle brackets) where YOUR ANSWER is your answer. For your answer, do not output additional contents that violate the specified format."
+      }
+    },
+    {
+      "type": "debug",
+      "prompt": {
+        "Introduction": "You are a great expert solving {task_type} question. You should debug the solution based on the previous buggy information.",
+        "Task description": "{description}",
+        "Submission Format": "{submission_format}",
+        "Question": "The {task_type} question is: {question}",
+        "Example Input and Output": "Here is the example input and output: Input: {example_input} Output: {example_output}",
+        "Previous buggy information": "{previous_buggy_information}",
+        "Instructions": "You should only output the answer of this task following Submission Format. Do not output code or any explanation. The output must not include anything other than the final answer. Ensure your response stays within the maximum token limit. Avoid repeating or padding the output.",
+        "Response format": "The last part of your response should be of the following format: \"Answer: <YOUR ANSWER>\" (without angle brackets) where YOUR ANSWER is your answer. For your answer, do not output additional contents that violate the specified format."
+      }
+    },
+    {
+      "type": "improve_wom",
+      "prompt": {
+        "Introduction": "You are a great expert solving {task_type} question. You should come up with a new solution to this question.",
+        "Task description": "{description}",
+        "Submission Format": "{submission_format}",
+        "Question": "The {task_type} question is: {question}",
+        "Example Input and Output": "Here is the example input and output: Input: {example_input} Output: {example_output}",
+        "Instructions": "You should only output the answer of this task following Submission Format. Do not output code or any explanation. The output must not include anything other than the final answer. Ensure your response stays within the maximum token limit. Avoid repeating or padding the output.",
+        "Response format": "The last part of your response should be of the following format: \"Answer: <YOUR ANSWER>\" (without angle brackets) where YOUR ANSWER is your answer. For your answer, do not output additional contents that violate the specified format."
+      }
+    }
+  ]
