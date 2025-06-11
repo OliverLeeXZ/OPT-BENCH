@@ -1,4 +1,4 @@
-# psMLAgent
+# OPT-BENCH
 
 ## Setup
 Make sure you have ```Python>=3.10``` installed and run:
@@ -13,15 +13,13 @@ export BASE_URL="Your URL"
 ```
 ### For ML task
 ```
-cd psMLAgent
+cd OPT-BENCH
 python run_exp.py --data_dir OPTAgent/example_tasks/spaceship-titanic --steps 1 --base_model gpt-4o-2024-08-06
 ```
 
 ### For NP task 
 ```
 python run_exp.py --data_dir OPTAgent/example_tasks/hamiltonian-cycle --task_field NP --steps <your steps default is 10> --base_model <your model default is 4o>
-
-
 ```
 
 ## For task scale up
