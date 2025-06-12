@@ -7,9 +7,18 @@ pip install -r requirements.txt
 ```
 
 ## Inference Example
+
+### API Model
 ```
 export API_KEY="Your api key"
-export BASE_URL="Your URL"
+export BASE_URL="Your api URL"
+```
+### Open-sourced Model
+
+We recommend that deploy model using lmdeploy.
+```
+export export API_KEY=EMPTY
+export BASE_URL="Your model URL"
 ```
 ### For ML task
 ```
@@ -23,6 +32,9 @@ python run_exp.py --data_dir OPTAgent/example_tasks/hamiltonian-cycle --task_fie
 ```
 
 ## For task scale up
+```
+https://huggingface.co/datasets/OPT-Bench/OPT-Bench
+```
 ### For NP task
 Take ```OPTAgent/example_tasks/hamiltonian-cycle``` as the example.
 1. Add your date in ```OPTAgent/example_tasks``` dir.
@@ -31,3 +43,9 @@ Take ```OPTAgent/example_tasks/hamiltonian-cycle``` as the example.
 4. prepare ```validation.py```. The rule-based validation py script for your task.
 
 Run the ```run_exp.py``` for validation.
+
+### For ML task
+Take ```OPTAgent/example_tasks/spaceship-titanic``` as the example.
+1. Add your date in ```OPTAgent/example_tasks``` dir.
+2. Prepare your own task. ``` task description in ## Description section, metric in ## Metric, dataset description in ## Dataset Description, submission format in ## Submission Format ```.
+3. You should prepare ```init.py in ## Code Template``` for ```OPTAgent-refine```, which is optional for ```OPTAgent-draft```.

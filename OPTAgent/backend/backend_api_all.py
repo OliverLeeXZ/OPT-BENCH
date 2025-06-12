@@ -15,6 +15,7 @@ _client: openai.OpenAI = None  # type: ignore
 # api_key = os.getenv("API_KEY") # set openai api key
 # base_url = os.getenv("BASE_URL")
 api_key = os.environ['API_KEY']
+base_url = os.environ['BASE_URL']
 
 OPENAI_TIMEOUT_EXCEPTIONS = (
     openai.RateLimitError,
@@ -22,7 +23,6 @@ OPENAI_TIMEOUT_EXCEPTIONS = (
     openai.APITimeoutError,
     openai.InternalServerError,
 )
-gpt4o_base_url= {"base_url": "https://api.openai.com/v1"}
 
 
 def _setup_openai_client(base_url, api_key=api_key):
@@ -54,8 +54,7 @@ def query(
     Query the OpenAI API, optionally with function calling.
     If the model doesn't support function calling, gracefully degrade to text generation.
     """
-    current_base_url = gpt4o_base_url["base_url"] if "gpt-4o" in model_kwargs["model"] else os.environ.get('BASE_URL')
-    _setup_openai_client(api_key=api_key, base_url=current_base_url)
+    _setup_openai_client(api_key=api_key, base_url=base_url)
     filtered_kwargs: dict = select_values(notnone, model_kwargs)
     
     if "claude-" in model_kwargs["model"]:

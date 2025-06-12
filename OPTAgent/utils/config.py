@@ -22,7 +22,7 @@ shutup.mute_warnings()
 logging.basicConfig(
     level="WARNING", format="%(message)s", datefmt="[%X]", handlers=[RichHandler()]
 )
-logger = logging.getLogger("aide")
+logger = logging.getLogger("OPTAgent")
 logger.setLevel(logging.WARNING)
 
 """ these dataclasses are just for type hinting, the actual config is in config.yaml """
