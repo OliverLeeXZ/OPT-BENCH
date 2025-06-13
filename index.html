@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="OPT-BENCH: Evaluating LLM Agent on Large-Scale">
+    <meta name="keywords" content="OPT-BENCH">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OPT-BENCH</title>
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="stylesheet" href="./static/css/leaderboard.css">
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./static/js/sort-table.js" defer></script>
+    <script src="./static/js/fontawesome.all.min.js" defer></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/explorer-index.js"></script>
+    <script src="./static/js/question_card.js"></script>
+    <script src="./static/js/leaderboard_testmini.js"></script>  
+  </head>
+
+  <body>
+    
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-2 publication-title">OPT-BENCH:</h1>
+              <h1 class="title is-2 publication-title">A Long-Form Multi-Shot Benchmark for Holistic Video Understanding</h1>
+              <h1 class="title is-2 publication-title">(Accepted by NeurIPS D&B Track 2024)</h1>
+              <div class="is-size-5 publication-authors">
+                <br>
+                <span class="author-block">
+                  <a href="https://scholar.google.com.hk/citations?hl=en&user=QZk6nZ8AAAAJ" style="font-weight:normal;">Xinyu Fang<b><sup>* 1,2</sup></b></a>,
+                </span>
+                <span class="author-block">
+                  <a href="https://karrymao.github.io/" style="font-weight:normal;">Kangrui Mao<b><sup>* &sect;3</sup></b></a>,
+                </span>
+                <span class="author-block">
+                  <a href="https://kennymckormick.github.io/" style="font-weight:normal;">Haodong Duan<b><sup>&dagger;2</sup></b></a>,
+                </span>
+                <span class="author-block">
+                  <a href="https://github.com/PhoenixZ810/" style="font-weight:normal;">Xiangyu Zhao<b><sup>2,3</sup></b></a>,
+                </span>
+                <span class="author-block">
+                  <a href="https://scholar.google.com.hk/citations?user=y_cp1sUAAAAJ&hl=en" style="font-weight:normal;">Yining Li<sup>2</sup></a>,
+                </span>
+                <span class="author-block">
+                  <a href="http://dahua.site/" style="font-weight:normal;">Dahua Lin<sup>2,4</sup></a>,
+                </span>
+                <span class="author-block">
+                  <a href="https://chenkai.site/" style="font-weight:normal;">Kai Chen<b><sup>&dagger;2</sup></b></a>
+                </span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block"><b style="color:#008AD7; font-weight:normal">&#x25B6 </b> <sup>1</sup> Zhejiang University </span>
+                <span class="author-block"><b style="color:#fa7f6f; font-weight:normal">&#x25B6 </b> <sup>2 </sup> Shanghai AI Laboratory</span>
+                <span class="author-block"><b style="color:#f68946; font-weight:normal">&#x25B6 </b> <sup>3 </sup> Shanghai Jiao Tong University</span>
+                <span class="author-block"><b style="color:#008AD7; font-weight:normal">&#x25B6 </b> <sup>4 </sup> The Chinese University of Hong Kong</span>
+              </div>
+              
+              <div class="is-size-6 publication-authors">
+                <br>
+                <span class="author-block"><b>*</b> Equal contribution.</span>
+                <span class="author-block"><b>&dagger;</b> Corresponding authors.</span>
+              </div>
+              
+              <div class="is-size-6 publication-authors">
+                <span class="author-block"><b><sup>&sect;</sup></b> Work done during an internship in Shanghai AI Laboratory.</span>
+              </div>
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <span class="link-block">
+                    <a href="https://arxiv.org/abs/2406.14515" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="ai ai-arxiv"></i>
+                      </span>
+                      <span>arXiv</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a href="https://github.com/open-compass/VLMEvalKit" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>Code (Integrated Into VLMEvalKit)</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a href="https://huggingface.co/datasets/opencompass/OPT-BENCH" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <p style="font-size:18px">🤗</p>
+                      </span>
+                      <span>Dataset</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a href="https://huggingface.co/spaces/opencompass/openvlm_video_leaderboard" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <p style="font-size:18px">🏅</p>
+                      </span>
+                      <span>OpenVLM Video Leaderboard</span>
+                    </a>
+                  </span>
+                </div>
+                <div style="text-align: left;">
+                <font size="3">
+                  <br>🚀 <b>OPT-BENCH: </b> A quantitative benchmark designed to rigorously evaluate LVLMs' proficiency in <b>video understanding.</b> 
+                  <br>🚀 Contains <b>long-form, diverse videos</b> sourced from the web, encompassing <b>a broad spectrum of topics</b>. 
+                  <br>🚀 Includes <b>original, high-quality</b> visual questions crafted by volunteers, spanning <b>dozens of fine-grained capabilities.</b> 
+                  <br>🚀 Enhanced <b>GPT-4-based evaluation</b> paradigm; comprehensive assessment of <b>various LVLMs and Video-LLMs</b>
+                </font>
+                </div>
+                <br>
+                <font size="6">
+                  <br>🔥<b>What's New</b>
+                </font>
+                <font size="4">
+                  <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0"><tbody>
+                    <tr>
+                      <td>
+                        <div  align="left" style="height: 140px; overflow: auto;">
+                          <ul>
+                            <li> <b style="color:#E68E34">[2024.09.26]</b> The <b>OPT-BENCH</b> has been accepted at <b>NeurIPS D&B Track 2024</b> as a poster! See you in Vancouver!</b>
+                            <li> <b style="color:#E68E34">[2024.09.24]</b> The <b>OpenVLM Video Leaderboard</b> has been established, you can click <a href="https://huggingface.co/spaces/opencompass/openvlm_video_leaderboard">here to view the video understanding capabilites of each VLMs</a>!</b>
+                            <li> <b style="color:#E68E34">[2024.06.26]</b> The <b>OPT-BENCH</b> has been integrated into <a href="https://github.com/open-compass/VLMEvalKit/">VLMEvalKit</a>!</b>
+                            <li> <b style="color:#E68E34">[2024.06.26]</b> The <b>Project Page</b> is released!</b>
+                            <li> <b style="color:#E68E34">[2024.06.21]</b> Our paper has been featured as <b>🤗HuggingFace Daily Papers</b> and <b>ranked <b style="color:#ff0000">5th</b></b> out of 24 daily papers.
+                            <li> <b style="color:#E68E34">[2024.06.20]</b> The <b>Paper</b> is released!
+                            <li> <b style="color:#E68E34">[2024.06.12]</b> The <b>OPT-BENCH Dataset</b> is released!</b>
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody></table>
+                </font>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section" id="Abstract">
+      <div class="container" style="margin-bottom: 2vh;">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                The advent of large vision-language models (LVLMs) has spurred research into their applications in multi-modal contexts, particularly in video understanding. 
+                Traditional VideoQA benchmarks, despite providing quantitative metrics, often fail to encompass the full spectrum of video content and inadequately assess models' temporal comprehension. 
+                To address these limitations, we introduce <b>OPT-BENCH</b>, a quantitative benchmark designed to rigorously evaluate LVLMs' proficiency in video understanding. 
+                <b>OPT-BENCH</b> incorporates lengthy videos from YouTube and employs free-form questions, mirroring practical use cases. 
+                The benchmark is meticulously crafted to probe the models' <b>temporal reasoning skills</b>, with all questions human-annotated according to a carefully constructed <b>ability taxonomy</b>.
+                We employ <b>GPT-4</b> for automated assessment, demonstrating superior accuracy and robustness over earlier LLM-based evaluations. 
+                Utilizing <b>OPT-BENCH</b>, we have conducted comprehensive evaluations that include both proprietary and open-source LVLMs for images and videos. 
+                <b>OPT-BENCH</b> stands as a valuable resource for the research community, facilitating improved evaluation of LVLMs and catalyzing progress in the field of video understanding. 
+                The evalutation code of <b>OPT-BENCH</b> will be integrated into <a href="https://github.com/open-compass/VLMEvalKit/">VLMEvalKit</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+    
+    <section class="hero is-light is-small" id="Dataset Title">
+      <div class="hero-body has-text-centered">
+        <h1 class="title is-2">
+          <span style="vertical-align: middle">Comparision of OPT-BENCH and Other VideoQA benchmarks</span>
+        </h1>
+      </div>
+    </section>
+    <section class="section" id="Dataset">
+      <div class="container">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <div class="content has-text-justified">
+
+              <div class="content has-text-justified">
+              <p>
+              The current evaluation of Video-LLMs is characterized by the following limitations:
+              <p><strong>1. Short Videos:</strong></p>
+              <p>Existing VideoQA datasets primarily consist of short videos, typically lasting less than a minute. Meanwhile, most web video content spans several minutes or longer, creating a discrepancy between the evaluation benchmark and real-world application scenarios.</p>
+              
+              <p><strong>2. Limited Capabilities:</strong></p>
+              <p>Current VideoQA benchmarks are limited to several basic video tasks, including concept existence, object relationship recognition, and activity recognition. There are more fine-grained perception and reasoning capabilities not encompassed by existing benchmarks.</p>
+              
+              <p><strong>3. Biased Evaluation:</strong></p>
+              <p>Existing evaluation paradigms employ GPT-3.5 to score open-ended answers generated by video-language models. Our preliminary study indicates that GPT-3.5-based evaluation is less accurate and exhibits significant discrepancy relative to human preferences, diminishing the credibility of the evaluation results.</p>
+              </p>
+
+              <centering>
+                <!-- <style>
+                  table.GeneratedTable {
+                    width: 100%;
+                    background-color: #ffffff;
+                    border-collapse: collapse;
+                    border-width: 2px;
+                    border-color: #c1c4c5;
+                    border-style: solid;
+                    color: #000000;
+                  }
+                  
+                  table.GeneratedTable td, table.GeneratedTable th {
+                    border-width: 2px;
+                    border-color: #9b9d9e;
+                    border-style: solid;
+                    padding: 3px;
+                  }
+                  
+                  table.GeneratedTable thead {
+                    background-color: #6691ee;
+                  }
+                </style> -->
+                <div class="column is-six-fifths" width="100%">
+
+                  <table class="table is-striped js-sort-table" id="results">
+                    <thead>
+                      <tr>
+                        <th><strong>Benchmarks</strong></th>
+                        <th><strong>QA pairs Generation</strong></th>
+                        <th><strong>Number of Capabilities</strong></th>
+                        <th><strong>Question Length mean(std) words</strong></th>
+                        <th><strong>Answer Length mean(std) words</strong></th>
+                        <th><strong>Video duration mean(std) sec</strong></th>
+                        <th><strong>Shot Number mean(std)</strong></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>MSVD-QA</td>
+                        <td>Automatic</td>
+                        <td>2</td>
+                        <td>6.6(2.5)</td>
+                        <td>1.0(0.0)</td>
+                        <td>9.8(6.6)</td>
+                        <td>2.4(3.4)</td>
+                      </tr>
+                      <tr>
+                        <td>MSRVTT-QA</td>
+                        <td>Automatic</td>
+                        <td>2</td>
+                        <td>7.4(3.4)</td>
+                        <td>1.0(0.0)</td>
+                        <td>15.1(5.2)</td>
+                        <td>3.4(2.9)</td>
+                      </tr>
+                      <tr>
+                        <td>TGIF-QA</td>
+                        <td>Automatic/Human</td>
+                        <td>4</td>
+                        <td>9.7(2.3)</td>
+                        <td>1.5(0.9)</td>
+                        <td>3.7(2.0)</td>
+                        <td>1.2(1.4)</td>
+                      </tr>
+                      <tr>
+                        <td>ActivityNet-QA</td>
+                        <td>Human</td>
+                        <td>3</td>
+                        <td>8.9(2.4)</td>
+                        <td>1.3(0.7)</td>
+                        <td>111.5(66.1)</td>
+                        <td>12.9(20.9)</td>
+                      </tr>
+                      <tr>
+                        <td>OPT-BENCH</td>
+                        <td>Human</td>
+                        <td><u><b>26</b></u></td>
+                        <td><u><b>10.9(4.1)</b></u></td>
+                        <td><u><b>8.4(7.7)</b></u></td>
+                        <td><u><b>165.4(80.7)</b></u></td>
+                        <td><u><b>32.6(33.5)</b></u></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <!-- <table class="GeneratedTable">
+                    <thead>
+                      <tr>
+                        <th>Benchmarks</th>
+                        <th>QA pairs Generation</th>
+                        <th>Number of Capabilities</th>
+                        <th>Question Length mean(std) words</th>
+                        <th>Answer Length mean(std) words</th>
+                        <th>Video duration mean(std) sec</th>
+                        <th>Shot Number mean(std)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>MSVD-QA</td>
+                        <td>Automatic</td>
+                        <td>2</td>
+                        <td>6.6(2.5)</td>
+                        <td>1.0(0.0)</td>
+                        <td>9.8(6.6)</td>
+                        <td>2.4(3.4)</td>
+                      </tr>
+                      <tr>
+                        <td>MSRVTT-QA</td>
+                        <td>Automatic</td>
+                        <td>2</td>
+                        <td>7.4(3.4)</td>
+                        <td>1.0(0.0)</td>
+                        <td>15.1(5.2)</td>
+                        <td>3.4(2.9)</td>
+                      </tr>
+                      <tr>
+                        <td>TGIF-QA</td>
+                        <td>Automatic/Human</td>
+                        <td>4</td>
+                        <td>9.7(2.3)</td>
+                        <td>1.5(0.9)</td>
+                        <td>3.7(2.0)</td>
+                        <td>1.2(1.4)</td>
+                      </tr>
+                      <tr>
+                        <td>ActivityNet-QA</td>
+                        <td>Human</td>
+                        <td>3</td>
+                        <td>8.9(2.4)</td>
+                        <td>1.3(0.7)</td>
+                        <td>111.5(66.1)</td>
+                        <td>12.9(20.9)</td>
+                      </tr>
+                      <tr bgcolor="#a4cff4">
+                        <td>OPT-BENCH</td>
+                        <td>Human</td>
+                        <td>26</td>
+                        <td>10.9(4.1)</td>
+                        <td>8.4(7.7)</td>
+                        <td>165.4(80.7)</td>
+                        <td>32.6(33.5)</td>
+                      </tr>
+                    </tbody>
+                  </table> -->
+                  
+                  <div style="text-align: left;">
+                      <img id="pie" width="100%" src="images/video_data_for_page.png">
+                      <p style="font-family:Times New Roman">
+                        <font size=4>
+                          <b>OPT-BENCH: a long-form, multi-shot VideoQA benchmark with diverse video categories</b>: 
+                          (a) The dataset covers a broad spectrum of categories, including science, sports, finance, games, news, etc. 
+                          (b) The dataset includes videos ranging from 30 seconds to 6 minutes in length.
+                          (c) The videos in our benchmark display a long-tail distribution in shot numbers, with a maximum of 210 shots.
+                        </font>
+                    </div>
+                  </div>
+              </centering>
+              <br>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero is-light is-small" id="Captioner Title">
+      <div class="hero-body has-text-centered">
+        <h1 class="title is-2">
+          <span style="vertical-align: middle">Capability Taxonomy of OPT-BENCH </span>
+        </h1>
+      </div>
+    </section>
+    <section class="section" id="Captioner">
+      <div class="container">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <div class="content has-text-justified">
+
+              <div style="text-align: center;"><b><font size=5>3-level hierarchical capability texonomy of OPT-BENCH</font></b></div>
+              <br>
+              <br>
+              <centering>
+                <div style="text-align: center;"><img id="captioner" width="60%" src="images/OPT-BENCH-question-stat_wo_audio.png"></div>
+                <div style="text-align: left;">
+                  <p style="font-family:Times New Roman">
+                    <font size=4>
+                      The top level encompasses two broad capabilities: <b>Perception</b> and <b>Reasoning</b>. 
+                      Besides the six L-2 capabilities inherited from MMBench, we further introduce <b>three additional L-2 capabilities</b> specific to OPT-BENCH: <b>Hallucination, Commonsense Reasoning, and Temporal Reasoning</b>. 
+                      <b>Hallucination</b> assesses whether a model is prone to generating content that includes misleading or inaccurate information. 
+                      <b>Commonsense Reasoning</b> evaluates a model’s ability to integrate necessary commonsense knowledge into its reasoning processes. 
+                      <b>Temporal Reasoning</b> examines a model’s proficiency in understanding the relationships between events unfolding at different video points. 
+                      This taxonomy comprises a total of <b>26 leaf capabilities</b>, which collectively address a comprehensive spectrum of cognitive processes involved in video comprehension.
+                    </font>
+                  </p>
+                </div>
+              </centering>
+              <br>
+
+                    
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="hero is-light is-small" id="Captioner Title">
+      <div class="hero-body has-text-centered">
+        <h1 class="title is-2">
+          <span style="vertical-align: middle">OPT-BENCH Leaderboard</span>
+        </h1>
+      </div>
+    </section>
+    <section class="section" id="Leaderboard">
+      <div class="container"> 
+        <div class="columns is-centered">
+          <div class="column is-full has-text-centered content">
+            <div class="content">
+              <p>Perception: CP (coarse perception), FP-S (single-instance fine-grained perception), FP-C (cross-instance fine-grained perception), HL (Hallucination)</p>
+              <p>Reasoning: LR (logic reasoning), AR (attribute reasoning), RR (relation reasoning), CSR (commonsense reasoning), TR (temporal reasoning)</p>
+              <p>The <u><b>best</b></u> results are highlighted in <u><b>bold and underlined</b></u>.
+              <p>You can also view the latest <u><b>OPT-BENCH</b></u> Leaderboard at <a href="https://huggingface.co/spaces/opencompass/openvlm_video_leaderboard">OpenVLM Video Leaderboard</a>!
+
+              <!-- <script
+                type="module"
+                src="https://gradio.s3-us-west-2.amazonaws.com/4.44.0/gradio.js"
+              ></script>
+
+              <gradio-app src="https://opencompass-openvlm-video-leaderboard.hf.space"></gradio-app> -->
+              <table class="table is-striped js-sort-table" id="results">
+                <thead>
+                  <tr>
+                    <th rowspan="2" style="vertical-align: middle;"><strong>Model</strong></th>
+                    <th colspan="5" style="text-align: center;"><strong>Perception</strong></th>
+                    <th colspan="6" style="text-align: center;"><strong>Reasoning</strong></th>
+                    <th rowspan="2" style="vertical-align: middle;"><strong>Overall Mean</strong></th>
+                    <th rowspan="2" style="vertical-align: middle;"><strong>Model Type</strong></th>
+                  </tr>
+                  <tr>
+                    <th style="text-align: center;"><strong>CP</strong></th>
+                    <th style="text-align: center;"><strong>FP-S</strong></th>
+                    <th style="text-align: center;"><strong>FP-C</strong></th>
+                    <th style="text-align: center;"><strong>HL</strong></th>
+                    <th style="text-align: center;"><strong>Mean</strong></th>
+                    <th style="text-align: center;"><strong>LR</strong></th>
+                    <th style="text-align: center;"><strong>AR</strong></th>
+                    <th style="text-align: center;"><strong>RR</strong></th>
+                    <th style="text-align: center;"><strong>CSR</strong></th>
+                    <th style="text-align: center;"><strong>TR</strong></th>
+                    <th style="text-align: center;"><strong>Mean</strong></th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr>
+                    <td>GPT-4o-0806-[16f] 🥇</td>
+                    <td><u><b>2.04</b></u></td>
+                    <td><u><b>1.89</b></u></td>
+                    <td><u><b>1.66</b></u></td>
+                    <td><u><b>2.15</b></u></td>
+                    <td><u><b>1.89</b></u></td>
+                    <td><u><b>1.75</b></u></td>
+                    <td><u><b>2.04</b></u></td>
+                    <td><u><b>1.81</b></u></td>
+                    <td><u><b>1.93</b></u></td>
+                    <td><u><b>1.62</b></u></td>
+                    <td><u><b>1.81</b></u></td>
+                    <td><u><b>1.87</b></u></td>
+                    <td>Proprietary LVLMs for Images</td>
+                  </tr>
+
+                  <tr>
+                    <td>Gemini-1.5-Flash-[16f] 🥈</td>
+                    <td>1.77</td>
+                    <td>1.69</td>
+                    <td>1.52</td>
+                    <td>1.29</td>
+                    <td>1.66</td>
+                    <td>1.46</td>
+                    <td>1.88</td>
+                    <td>1.78</td>
+                    <td>1.75</td>
+                    <td>1.39</td>
+                    <td>1.63</td>
+                    <td>1.66</td>
+                    <td>Proprietary LVLMs for Images</td>
+                  </tr>
+
+                  <tr>
+                    <td>Aria-[16f] 🥉</td>
+                    <td>1.84</td>
+                    <td>1.63</td>
+                    <td>1.40</td>
+                    <td>0.95</td>
+                    <td>1.61</td>
+                    <td>1.22</td>
+                    <td>1.88</td>
+                    <td>1.71</td>
+                    <td>1.59</td>
+                    <td>1.48</td>
+                    <td>1.58</td>
+                    <td>1.61</td>
+                    <td>Open-Source LVLMs for Images</td>
+                  </tr>
+
+                  <tr>
+                    <td>VILA1.5-40B-[14f] 🥉</td>
+                    <td>1.78</td>
+                    <td>1.72</td>
+                    <td>1.35</td>
+                    <td>0.47</td>
+                    <td>1.63</td>
+                    <td>1.12</td>
+                    <td>1.78</td>
+                    <td>1.61</td>
+                    <td>1.48</td>
+                    <td>1.45</td>
+                    <td>1.52</td>
+                    <td>1.61</td>
+                    <td>Open-Source LVLMs for Images</td>
+                  </tr>
+
+                  <tr>
+                    <td>InternVL2-76B-[16f]</td>
+                    <td>1.76</td>
+                    <td>1.66</td>
+                    <td>1.38</td>
+                    <td>0.35</td>
+                    <td>1.59</td>
+                    <td>1.40</td>
+                    <td>1.81</td>
+                    <td>1.73</td>
+                    <td>1.70</td>
+                    <td>1.41</td>
+                    <td>1.59</td>
+                    <td>1.59</td>
+                    <td>Open-Source LVLM for Images</td>
+                  </tr>
+
+                  <tr>
+                    <td>Claude-3.5-Sonnet-[8f]</td>
+                    <td>1.57</td>
+                    <td>1.39</td>
+                    <td>1.07</td>
+                    <td>1.40</td>
+                    <td>1.38</td>
+                    <td>1.13</td>
+                    <td>1.70</td>
+                    <td>1.48</td>
+                    <td>1.54</td>
+                    <td>1.04</td>
+                    <td>1.35</td>
+                    <td>1.38</td>
+                    <td>Proprietary LVLMs for Images</td>
+                  </tr>
+
+                  <tr>
+                    <td>mPLUG-Owl3-[16f]</td>
+                    <td>1.56</td>
+                    <td>1.42</td>
+                    <td>1.18</td>
+                    <td>0.35</td>
+                    <td>1.37</td>
+                    <td>0.89</td>
+                    <td>1.55</td>
+                    <td>1.42</td>
+                    <td>1.31</td>
+                    <td>1.18</td>
+                    <td>1.28</td>
+                    <td>1.35</td>
+                    <td>Open-Source LVLM for Images</td>
+                  </tr>
+
+                  <tr>
+                    <td>VideoChat2-HD-[16f]</td>
+                    <td>1.45</td>
+                    <td>1.19</td>
+                    <td>1.12</td>
+                    <td>0.44</td>
+                    <td>1.20</td>
+                    <td>0.84</td>
+                    <td>1.49</td>
+                    <td>1.39</td>
+                    <td>1.11</td>
+                    <td>1.23</td>
+                    <td>1.23</td>
+                    <td>1.22</td>
+                    <td>Open-Source LVLM for Videos</td>
+                  </tr>
+
+                  <tr>
+                    <td>Phi-3.5-Vision-[16f]</td>
+                    <td>1.44</td>
+                    <td>1.26</td>
+                    <td>0.93</td>
+                    <td>0.48</td>
+                    <td>1.22</td>
+                    <td>0.81</td>
+                    <td>1.42</td>
+                    <td>1.28</td>
+                    <td>1.12</td>
+                    <td>0.90</td>
+                    <td>1.11</td>
+                    <td>1.20</td>
+                    <td>Open-Source LVLM for Images</td>
+                  </tr>
+
+                  <tr>
+                    <td>PLLaVA-34B-[16f]</td>
+                    <td>1.41</td>
+                    <td>1.18</td>
+                    <td>0.93</td>
+                    <td>1.00</td>
+                    <td>1.19</td>
+                    <td>0.66</td>
+                    <td>1.43</td>
+                    <td>1.25</td>
+                    <td>1.28</td>
+                    <td>1.10</td>
+                    <td>1.16</td>
+                    <td>1.19</td>
+                    <td>Open-Source LVLM for Videos</td>
+                  </tr>
+
+                  <tr>
+                    <td>LLaVA-NeXT-Video-34B-HF-[32f]</td>
+                    <td>1.35</td>
+                    <td>1.15</td>
+                    <td>0.97</td>
+                    <td>0.58</td>
+                    <td>1.14</td>
+                    <td>0.64</td>
+                    <td>1.38</td>
+                    <td>1.30</td>
+                    <td>1.27</td>
+                    <td>1.03</td>
+                    <td>1.13</td>
+                    <td>1.14</td>
+                    <td>Open-Source LVLM for Videos</td>
+                  </tr>
+
+                  <tr>
+                    <td>VideoStreaming-[64f+]</td>
+                    <td>1.38</td>
+                    <td>1.13</td>
+                    <td>0.80</td>
+                    <td>0.32</td>
+                    <td>1.13</td>
+                    <td>0.77</td>
+                    <td>1.27</td>
+                    <td>1.11</td>
+                    <td>1.01</td>
+                    <td>1.10</td>
+                    <td>1.09</td>
+                    <td>1.12</td>
+                    <td>Open-Source LVLM for Videos</td>
+                  </tr>
+
+                  <tr>
+                    <td>LLaMA-VID-7B-[1fps]</td>
+                    <td>1.30</td>
+                    <td>1.09</td>
+                    <td>0.93</td>
+                    <td>0.42</td>
+                    <td>1.09</td>
+                    <td>0.71</td>
+                    <td>1.21</td>
+                    <td>1.08</td>
+                    <td>0.83</td>
+                    <td>1.04</td>
+                    <td>1.02</td>
+                    <td>1.08</td>
+                    <td>Open-Source LVLM for Videos</td>
+                  </tr>
+
+                  <tr>
+                    <td>Chat-UniVi-7B-v1.5-[64f]</td>
+                    <td>1.32</td>
+                    <td>1.08</td>
+                    <td>0.87</td>
+                    <td>0.40</td>
+                    <td>1.08</td>
+                    <td>0.57</td>
+                    <td>1.19</td>
+                    <td>1.03</td>
+                    <td>0.90</td>
+                    <td>1.01</td>
+                    <td>0.99</td>
+                    <td>1.06</td>
+                    <td>Open-Source LVLM for Videos</td>
+                  </tr>
+
+                  <tr>
+                    <td>ShareGPT4Video-8B-[16f*]</td>
+                    <td>1.20</td>
+                    <td>1.05</td>
+                    <td>1.00</td>
+                    <td>0.32</td>
+                    <td>1.04</td>
+                    <td>0.89</td>
+                    <td>1.06</td>
+                    <td>1.19</td>
+                    <td>1.01</td>
+                    <td>0.99</td>
+                    <td>1.03</td>
+                    <td>1.05</td>
+                    <td>Open-Source LVLM for Videos</td>
+                  </tr>
+
+                  <tr>
+                    <td>Video-LLaVA-[8f]</td>
+                    <td>1.17</td>
+                    <td>1.06</td>
+                    <td>0.84</td>
+                    <td>0.42</td>
+                    <td>1.04</td>
+                    <td>0.54</td>
+                    <td>1.24</td>
+                    <td>1.02</td>
+                    <td>0.72</td>
+                    <td>0.96</td>
+                    <td>0.95</td>
+                    <td>1.03</td>
+                    <td>Open-Source LVLM for Videos</td>
+                  </tr>
+
+                
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title is-3 has-text-centered">📃 BibTeX</h2>
+        <pre><code>
+          @article{fang2024mmbenchvideo,
+            title={Search Spaces Optimization Problems}, 
+            author={Xinyu Fang and Kangrui Mao and Haodong Duan and Xiangyu Zhao and Yining Li and Dahua Lin and Kai Chen},
+            journal={arXiv preprint arXiv:2406.14515},
+            year={2024}
+          }
+        </code></pre>
+        <br>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website template is adapted from <a href="https://sharegpt4v.github.io/">ShareGPT4V</a>, <a href="https://mmstar-benchmark.github.io/">MMStar</a> and <a href="https://nerfies.github.io/">Nerfies</a>, licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+              Commons Attribution-ShareAlike 4.0 International License</a>
+            </p>
+            <div style="display: flex; justify-content: center; width: 100%;">
+              <div style="width: 30%; text-align: center;">
+                <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=6Resz4ZWizFsma4DsbyQlyLwbmZprUilUBJHZF4aQOE&cl=ffffff&w=a"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    </body>
+    </html>
