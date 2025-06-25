@@ -10,7 +10,7 @@
 ## 📣 What's New
 - **[2025.6.11]** We have released data in [OliverLeeXZ/OPT-Bench](https://huggingface.co/datasets/OPT-Bench/OPT-Bench). 🎉🎉🎉
 - **[2025.6.10]** We have released code in [OliverLeeXZ/OPT-Bench](https://github.com/OliverLeeXZ/OPT-BENCH). 🎉🎉🎉
-- **[2025.6.10]** Our MM-IFEngine Paper is released! Check it at 📃[Arxiv: OPT-BENCH](http://arxiv.org/abs/2506.10764) ! Our Dataset will be open-sourced soon! 🎉🎉🎉
+- **[2025.6.10]** Our OPT-BENCH Paper is released! Check it at 📃[Arxiv: OPT-BENCH](http://arxiv.org/abs/2506.10764) ! Our Dataset will be open-sourced soon! 🎉🎉🎉
 
 ## 🌟 Highlights
 <div align="center">
