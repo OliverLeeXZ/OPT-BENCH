@@ -39,8 +39,20 @@ capabilities
 </div>
 
 ## 🏆 OPT-BENCH Leaderboard
-Performance of existing MLLMs on OPT-BENCH. We report the accuracy of easy and difficult problems and the average accuracy across all problems. The C-Level and P-Level refer to the compose-level and perception-level problems, respectively. The best performance in each section is highlighted in bold.
+Performance of existing MLLMs on OPT-BENCH. We use four metrics to evaluate LLM performance on ML and NP tasks in OPT-BENCH, including Win Count, Buggy Rate, Rank, and Improvement Rate, which assess optimization capability, model robustness, ranking, and optimization performance across different experimental settings.
 
+<div align="center">
+ <img src="./images/webpages/expML.png" width="800"/>
+</div>
+Evaluation Results of LLMs on OPT-BENCH-ML. The column Win Count denotes the win count comparing the performance of LLM optimization using OPT-Agent against the baseline without historical information; IR(w,w.o) represents the improvement rate of OPT-Agent relative to the baseline; and IR(w,init) indicates the improvement relative to the initial solution. Evaluation Results of LLMs on OPT-BENCH-ML.
+<div align="center">
+ <img src="./images/webpages/expNP.png" width="800"/>
+</div>
+Evaluation Results of LLMs on OPT-BENCH-NP. The column Win Count denotes the win count comparing performance of LLM optimization using OPT-Agent against the baseline without historical information; Buggy Rate indicates the proportion of tasks where the model fails to produce a valid solution; Rank reflects the relative ranking of the model’s optimization outcomes per task.
+<div align="center">
+ <img src="./images/webpages/expdraft.png" width="800"/>
+</div>
+Evaluation Results of LLMs under Draft Settings. Metrics include Buggy Rate, denoting the proportion of invalid solutions; Win Count, comparing OPT-Agent-draft optimization against the baseline without historical information; and IR(d,r), the improvement rate comparing OPT-Agent-draft optimization to OPT-Agent-refine.
 # OPT-BENCH
 
 ## Setup
