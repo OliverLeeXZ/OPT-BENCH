@@ -105,6 +105,23 @@ Take ```OPTAgent/example_tasks/spaceship-titanic``` as the example.
 2. Prepare your own task. ``` task description in ## Description section, metric in ## Metric, dataset description in ## Dataset Description, submission format in ## Submission Format ```.
 3. You should prepare ```init.py in ## Code Template``` for ```OPTAgent-refine```, which is optional for ```OPTAgent-draft```.
 
+
+## 🖊️ Citation
+
+If you find this work helpful, please consider to **star🌟** this repo. Thanks for your support!
+
+```bib
+@misc{li2025optbenchevaluatingllmagent,
+      title={OPT-BENCH: Evaluating LLM Agent on Large-Scale Search Spaces Optimization Problems}, 
+      author={Xiaozhe Li and Jixuan Chen and Xinyu Fang and Shengyuan Ding and Haodong Duan and Qingwen Liu and Kai Chen},
+      year={2025},
+      eprint={2506.10764},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2506.10764}, 
+}
+```
+
 <picture>
   <source
     media="(prefers-color-scheme: dark)"
