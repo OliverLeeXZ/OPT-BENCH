@@ -1,7 +1,7 @@
-# OPT-BENCH: Evaluating LLM Agent on Large-Scale
+# OPT-BENCH: Evaluating the Iterative Self-Optimization of LLM Agents in Large-Scale Search Spaces
 <div align="center">
 
-[📃[Paper](http://arxiv.org/abs/2506.10764)]
+[📃[Paper](https://arxiv.org/abs/2605.08904)]
 [🌐[Project Page](https://github.com/OliverLeeXZ/OPT-BENCH)]
 [🤗[Hugging Face](https://huggingface.co/datasets/OPT-Bench/OPT-Bench)]
 </div>
@@ -9,12 +9,25 @@
 
 ## 📣 What's New
 - **[2026.5.8]** We updated OPT-BENCH by adding frontier models and a human expert baseline. Check it out at 📃 [arXiv: OPT-BENCH](https://arxiv.org/abs/2605.08904)!
-- **[2026.4.6]** The OPT-BENCH has been accepted at ACL 2026! See you in San Diego! 🎉🎉🎉
+- **[2026.4.6]** The OPT-BENCH has been accepted at **ACL 2026**! See you in **San Diego**! 🎉🎉🎉
 - **[2025.6.11]** We have released data in [OliverLeeXZ/OPT-Bench](https://huggingface.co/datasets/OPT-Bench/OPT-Bench). 🎉🎉🎉
 - **[2025.6.10]** We have released code in [OliverLeeXZ/OPT-Bench](https://github.com/OliverLeeXZ/OPT-BENCH). 🎉🎉🎉
 - **[2025.6.10]** Our OPT-BENCH Paper is released! Check it at 📃[Arxiv: OPT-BENCH](http://arxiv.org/abs/2506.10764) ! Our Dataset will be open-sourced soon! 🎉🎉🎉
 
 ## 🌟 Highlights
+
+<div align="center">
+ <img src="./images/webpages/spotlight.png" width="90%"/>
+</div>
+
+OPT-BENCH evaluates **Iterative Self-Optimization** through two complementary reasoning paradigms:
+
+- **Continuous Parametric Optimization** for machine learning tasks *(Top)*
+
+- **Discrete Combinatorial Reasoning** for NP-hard problems *(Bottom)*
+
+In both settings, the agent uses **environmental feedback** to refine its reasoning trajectory, debug intermediate solutions, and progressively bridge the gap between initial hypotheses and optimal solutions through intrinsic reasoning.
+
 <div align="center">
  <img src="./images/webpages/pipeline-v2.png" width="800"/>
 </div>
