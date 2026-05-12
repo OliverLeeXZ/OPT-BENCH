@@ -8,6 +8,8 @@
 
 
 ## 📣 What's New
+- **[2026.5.8]** We updated OPT-BENCH by adding frontier models and a human expert baseline. Check it out at 📃 [arXiv: OPT-BENCH](https://arxiv.org/abs/2605.08904)!
+- **[2026.4.6]** The OPT-BENCH has been accepted at ACL 2026! See you in San Diego! 🎉🎉🎉
 - **[2025.6.11]** We have released data in [OliverLeeXZ/OPT-Bench](https://huggingface.co/datasets/OPT-Bench/OPT-Bench). 🎉🎉🎉
 - **[2025.6.10]** We have released code in [OliverLeeXZ/OPT-Bench](https://github.com/OliverLeeXZ/OPT-BENCH). 🎉🎉🎉
 - **[2025.6.10]** Our OPT-BENCH Paper is released! Check it at 📃[Arxiv: OPT-BENCH](http://arxiv.org/abs/2506.10764) ! Our Dataset will be open-sourced soon! 🎉🎉🎉
